@@ -9,6 +9,7 @@
 import Foundation
 import Fuzi
 
+//FIXME: why does this exist?
 class WWXMLElement {
     let element:XMLElement!
     let raw:String?
@@ -16,11 +17,11 @@ class WWXMLElement {
     let tag:String?
     let stringValue:String?
     
-    init(element:XMLElement, raw:String?, attributes:[String:String], tag:String?, stringValue:String?){
+    init(element:XMLElement){
         self.element        = element
-        self.raw            = raw
-        self.attributes     = attributes
-        self.tag            = tag
-        self.stringValue    = stringValue
+        self.raw            = element.rawXML
+        self.attributes     = element.attributes
+        self.tag            = element.tag
+        self.stringValue    = element.stringValue
     }
 }

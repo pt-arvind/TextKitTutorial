@@ -9,44 +9,80 @@
 import Foundation
 import Quick
 import Nimble
+import Kingfisher
+import Fuzi
 @testable import TextKitTutorial
 
 class HTMLParserTest: QuickSpec {
     override func spec() {
         let textView = WWHTMLTextView()
         
-        describe("Textview is not nil") {
-            it("shouldn't be nil") {
-                let parser = HTMLParser(textView: textView)
-                expect(parser.textView).notTo(equal(nil))
-            }
-        }
-        
-        describe("Parser should parse html images") {
-            it("should remove html image tags") {
-                let parser = HTMLParser(textView: textView)
-                guard let htmlString = self.getJSONValueFromFile("SampleJSONTest", key: "cooked") else {return}
-                let cookedString = parser.removeImageTags(htmlString)
-                expect(cookedString.rangeOfString("<img")).to(beNil())
-            }
-            
-            it("should get a list of images from html") {
-                let parser = HTMLParser(textView: textView)
-                guard let htmlString = self.getJSONValueFromFile("SampleJSONTest", key: "cooked") else {return}
-                let imageTags = parser.getImageTags(htmlString).images
-                let parsedHTMLString = parser.getImageTags(htmlString).htmlWithNoImages
+//        describe("Textview is not nil") {
+//            it("shouldn't be nil") {
+//                
+//                HTMLParser(output: textView, source: HTMLDocument(), imageRetriever: KingfisherManager.sharedManager)
+//                let parser = HTMLParser(textView: textView)
+//                expect(parser.textView).notTo(equal(nil))
+//            }
+//        }
+
+        describe("HTMLParser") {
+            context("should parse HTML images") {
+                it("should remove HTML image tags") {
+                    guard let htmlString = self.getJSONValueFromFile("SampleJSONTest", key: "cooked") else {return}
+//                    let document = try! HTMLDocument(string: htmlString)
+//                    let parser = HTMLParser(output: textView, source: document, imageRetriever: KingfisherManager.sharedManager)
+
+                    
+//                    let parser = HTMLParser(textView: textView)
+//                    let cookedString = parser.removeImageTags(htmlString)
+                    
+                    let prunedString = AttributedStringAssistant.HTMLStringPruner.prune(htmlString, of: HTMLParserConstants.HTMLTypes.image)
+                    
+                    expect(prunedString.rangeOfString("<img")).to(beNil())
+                }
                 
-                expect(parsedHTMLString.rangeOfString("<img")).to(beNil())
-                expect(imageTags.count).to(equal(8))
-            }
-            
-            it("shouldn't have any images") {
-                let parser = HTMLParser(textView: textView)
-                guard let htmlString = self.getJSONValueFromFile("Sample21", key: "cooked") else {return}
-                let imageTags = parser.getImageTags(htmlString).images
-                let parsedHTMLString = parser.getImageTags(htmlString).htmlWithNoImages
-                expect(parsedHTMLString).to(equal(htmlString))
-                expect(imageTags.count).to(equal(0))
+                it("should get a list of images from html") {
+//                    let parser = HTMLParser(textView: textView)
+//                    guard let htmlString = self.getJSONValueFromFile("SampleJSONTest", key: "cooked") else {return}
+                    guard let htmlString = self.getJSONValueFromFile("SampleJSONTest", key: "cooked") else {return}
+                    let document = try! HTMLDocument(string: htmlString)
+                    let parser = HTMLParser(output: textView, source: document, imageRetriever: KingfisherManager.sharedManager)
+                    
+                    
+//                    let imageTags = parser.getImageTags(htmlString).images
+//                    let parsedHTMLString = parser.getImageTags(htmlString).htmlWithNoImages
+                    
+                    let results = try! parser.parse()
+                    
+                    expect(results.attributedString.string.rangeOfString("<img")).to(beNil())
+                    expect(results.images.count).to(equal(8))
+                }
+                
+                it("should have the proper information for images", closure: {
+                    guard let htmlString = self.getJSONValueFromFile("SampleJSONTest", key: "cooked") else {return}
+                    let document = try! HTMLDocument(string: htmlString)
+                    let parser = HTMLParser(output: textView, source: document, imageRetriever: KingfisherManager.sharedManager)
+                    
+                    let results = try! parser.parse()
+                    
+                    let firstImage = results.images[0]
+                    expect(firstImage.src).to(equal("http://lorempixel.com/96/96?random=1"))
+                    expect(firstImage.key).to(equal("http://lorempixel.com/96/96?random=1"))
+                    expect(firstImage.size.height).to(equal(96.0))
+                })
+//                it("shouldn't have any images") {
+////                    let parser = HTMLParser(textView: textView)
+////                    guard let htmlString = self.getJSONValueFromFile("Sample21", key: "cooked") else {return}
+//                    guard let htmlString = self.getJSONValueFromFile("SampleJSONTest", key: "cooked") else {return}
+//                    let document = try! HTMLDocument(string: htmlString)
+//                    let parser = HTMLParser(output: textView, source: document, imageRetriever: KingfisherManager.sharedManager)
+//                    
+//                    let imageTags = parser.getImageTags(htmlString).images
+//                    let parsedHTMLString = parser.getImageTags(htmlString).htmlWithNoImages
+//                    expect(parsedHTMLString).to(equal(htmlString))
+//                    expect(imageTags.count).to(equal(0))
+//                }
             }
         }
         
@@ -59,12 +95,7 @@ class HTMLParserTest: QuickSpec {
                 images = parser.getImageTags(htmlString).images
             })
             
-            it("should have the proper information for images", closure: {
-                let firstImage = images[0]
-                expect(firstImage.src).to(equal("http://lorempixel.com/96/96?random=1"))
-                expect(firstImage.key).to(equal("http://lorempixel.com/96/96?random=1"))
-                expect(firstImage.size.height).to(equal(96.0))
-            })
+
         }
         
         describe("WWXMLElements Tests") { 

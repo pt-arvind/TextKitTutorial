@@ -222,7 +222,7 @@ extension WWHTMLTextView /* Imaging */ {
         attachment.bounds   = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         
         if let attachedAttributedString = NSAttributedString(attachment: attachment) as? NSMutableAttributedString {
-            attachedAttributedString.addAttributes([NSParagraphStyleAttributeName: paragraphStyle(0), DetectedDataHandlerAttributeName: DetectedType.Image.rawValue], range: NSRange(location: 0, length: attachedAttributedString.length))
+            attachedAttributedString.addAttributes([NSParagraphStyleAttributeName: paragraphStyle(0), DetectedDataHandlerAttributeName: DetectedType.Image.rawValue, NSLinkAttributeName : "img://name"], range: NSRange(location: 0, length: attachedAttributedString.length))
             
             if let attrString = attributedText.mutableCopy() as? NSMutableAttributedString {
                 attrString.appendAttributedString(attachedAttributedString)
@@ -232,7 +232,7 @@ extension WWHTMLTextView /* Imaging */ {
         }
     }
     
-    func insertImage(name:String, image:UIImage, size:CGSize, at index:Int) -> NSRange{
+    func insertImage(name:String, image:UIImage, size:CGSize, at index:Int) -> NSRange {
         let attachment      = NSTextAttachment(data: nil, ofType: nil)
         attachment.image    = image
         attachment.bounds   = CGRectMake(0, 0, size.width, size.height)
@@ -241,14 +241,17 @@ extension WWHTMLTextView /* Imaging */ {
             let paragraphStyle                      = NSMutableParagraphStyle()
             paragraphStyle.paragraphSpacing         = 10
             paragraphStyle.paragraphSpacingBefore   = 10
-            let attr: [String: AnyObject]           = [NSParagraphStyleAttributeName: paragraphStyle, ImageAttributeName: name, DetectedDataHandlerAttributeName: DetectedType.Image.rawValue]
-            
-            attachmentAttributedString.addAttributes(attr, range: NSRange(location: 0, length: attachmentAttributedString.length))
+            //, NSParagraphStyleAttributeName: paragraphStyle
+            let attr: [String: AnyObject]           = [ImageAttributeName: name, DetectedDataHandlerAttributeName: DetectedType.Image.rawValue, NSLinkAttributeName : "img://name"]
             
             if let attrString = self.attributedText.mutableCopy() as? NSMutableAttributedString {
                 attrString.insertAttributedString(attachmentAttributedString, atIndex: index)
+                
+                
                 let range = NSMakeRange(index, attachmentAttributedString.length)
                 self.attributedText = attrString
+                
+                attrString.addAttributes(attr, range: range)
                 return range
             }
         }

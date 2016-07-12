@@ -33,6 +33,7 @@
 		4CA6667F1CC9101200ECC1AE /* DiscourseTwo.html in Resources */ = {isa = PBXBuildFile; fileRef = 4CA6667E1CC9101200ECC1AE /* DiscourseTwo.html */; };
 		4CA666811CC9578600ECC1AE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA666801CC9578600ECC1AE /* ImageLoader.swift */; };
 		67024DC0783D7565D8548C39 /* Pods_TextKitTutorial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48AFD5C1D70186FCD705AD9 /* Pods_TextKitTutorial.framework */; };
+		B02F94791D356F07004E8570 /* custom.css in Resources */ = {isa = PBXBuildFile; fileRef = B02F94781D356F07004E8570 /* custom.css */; };
 		F8420046ABF6B30799A9FA3F /* Pods_TextKitTutorialTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22C14C42DB00E838B42D49F /* Pods_TextKitTutorialTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		4CA6667E1CC9101200ECC1AE /* DiscourseTwo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = DiscourseTwo.html; sourceTree = "<group>"; };
 		4CA666801CC9578600ECC1AE /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		56F64FB5A83CBAC56E5ECF4C /* Pods-TextKitTutorialTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextKitTutorialTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TextKitTutorialTests/Pods-TextKitTutorialTests.release.xcconfig"; sourceTree = "<group>"; };
+		B02F94781D356F07004E8570 /* custom.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = custom.css; sourceTree = "<group>"; };
 		B8AD3849D01CD3E97F620C67 /* Pods-TextKitTutorial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextKitTutorial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TextKitTutorial/Pods-TextKitTutorial.debug.xcconfig"; sourceTree = "<group>"; };
 		D22C14C42DB00E838B42D49F /* Pods_TextKitTutorialTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TextKitTutorialTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA2B6F0E491D3F5C39295E5D /* Pods-TextKitTutorialTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextKitTutorialTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TextKitTutorialTests/Pods-TextKitTutorialTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		4C0054C01CC681DB00F2AB59 /* SampleHTML */ = {
 			isa = PBXGroup;
 			children = (
+				B02F94781D356F07004E8570 /* custom.css */,
 				4C0054C11CC681F400F2AB59 /* DiscourseOne.html */,
 				4CA6667E1CC9101200ECC1AE /* DiscourseTwo.html */,
 				4C34EED41CD01ABD003174F6 /* SampleHTMLParsingPost.json */,
@@ -252,12 +255,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C0054A91CC175C500F2AB59 /* Build configuration list for PBXNativeTarget "TextKitTutorial" */;
 			buildPhases = (
-				119A8255E22268965B1FC62E /* Check Pods Manifest.lock */,
+				119A8255E22268965B1FC62E /* [CP] Check Pods Manifest.lock */,
 				4C00547D1CC175C500F2AB59 /* Sources */,
 				4C00547E1CC175C500F2AB59 /* Frameworks */,
 				4C00547F1CC175C500F2AB59 /* Resources */,
-				8F8D3199869C879B4174DC06 /* Embed Pods Frameworks */,
-				452FBE6E5FBFAF2CCE78272A /* Copy Pods Resources */,
+				8F8D3199869C879B4174DC06 /* [CP] Embed Pods Frameworks */,
+				452FBE6E5FBFAF2CCE78272A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -272,12 +275,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C0054AC1CC175C500F2AB59 /* Build configuration list for PBXNativeTarget "TextKitTutorialTests" */;
 			buildPhases = (
-				6FE21B79DEAEBA1B05BAFD24 /* Check Pods Manifest.lock */,
+				6FE21B79DEAEBA1B05BAFD24 /* [CP] Check Pods Manifest.lock */,
 				4C0054911CC175C500F2AB59 /* Sources */,
 				4C0054921CC175C500F2AB59 /* Frameworks */,
 				4C0054931CC175C500F2AB59 /* Resources */,
-				C64C872DF5C72E5E1CF84FD9 /* Embed Pods Frameworks */,
-				C504EAEFFEA2AA72C8596CCA /* Copy Pods Resources */,
+				C64C872DF5C72E5E1CF84FD9 /* [CP] Embed Pods Frameworks */,
+				C504EAEFFEA2AA72C8596CCA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -355,6 +358,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B02F94791D356F07004E8570 /* custom.css in Resources */,
 				4C00548F1CC175C500F2AB59 /* LaunchScreen.storyboard in Resources */,
 				4C34EED51CD01ABD003174F6 /* SampleHTMLParsingPost.json in Resources */,
 				4C0054C21CC681F400F2AB59 /* DiscourseOne.html in Resources */,
@@ -384,14 +388,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		119A8255E22268965B1FC62E /* Check Pods Manifest.lock */ = {
+		119A8255E22268965B1FC62E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,14 +403,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		452FBE6E5FBFAF2CCE78272A /* Copy Pods Resources */ = {
+		452FBE6E5FBFAF2CCE78272A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,14 +418,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TextKitTutorial/Pods-TextKitTutorial-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6FE21B79DEAEBA1B05BAFD24 /* Check Pods Manifest.lock */ = {
+		6FE21B79DEAEBA1B05BAFD24 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,14 +433,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		8F8D3199869C879B4174DC06 /* Embed Pods Frameworks */ = {
+		8F8D3199869C879B4174DC06 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,14 +448,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TextKitTutorial/Pods-TextKitTutorial-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C504EAEFFEA2AA72C8596CCA /* Copy Pods Resources */ = {
+		C504EAEFFEA2AA72C8596CCA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,14 +463,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TextKitTutorialTests/Pods-TextKitTutorialTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C64C872DF5C72E5E1CF84FD9 /* Embed Pods Frameworks */ = {
+		C64C872DF5C72E5E1CF84FD9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
