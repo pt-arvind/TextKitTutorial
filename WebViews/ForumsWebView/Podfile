@@ -1,0 +1,23 @@
+source 'https://github.com/CocoaPods/Specs.git'
+# source 'git@github.com:weddingwire/specs-ios.git'
+platform :ios, '9.0'
+
+use_frameworks!
+
+def shared_pods
+
+  pod 'Alamofire', '~> 3.4.0'
+
+  pod 'SnapKit', '~> 0.18.0'
+  pod 'TTTAttributedLabel'
+  pod 'TPKeyboardAvoiding', '~> 1.2.11'
+  pod 'Fuzi'
+#  pod 'Inquire',      path: '/Users/Wess/Development/WeddingWire/Pods/inquire'
+
+  pod 'ObjectMapper'
+end
+
+
+target 'ForumsWebView' do
+  shared_pods
+end
