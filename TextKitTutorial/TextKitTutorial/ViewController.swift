@@ -76,7 +76,8 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     var parser: HTMLParser!
     func loadHTMLFromFile() {
-        if let htmlString = HelperFunctions.getJSONValueFromFile("SampleHTMLParsingPost", key: "cooked") {
+        if let htmlString = HelperFunctions.getJSONValueFromFile("SampleHTMLParsingPost", key: "cooked"),
+            css = HelperFunctions.stringFromFile(named: "custom", withExtension: "css") {
             //print("htmlStirng = \(htmlString)")
             do {
 //                let string = "<aside class=\"quote\" data-post=\"2\" data-topic=\"367\" data-full=\"true\"><div class=\"title\">\n<div class=\"quote-controls\"></div>\n<img alt=\"\" width=\"20\" height=\"20\" src=\"//mantis.pod.weddingwire.com/letter_avatar_proxy/v2/letter/s/c57346/40.png\" class=\"avatar\">Settings5:</div>\n<blockquote style=\"border-left: 5px solid #e9e9e9; background-color: #f8f8f8; clear: both;\"><p>Here is my post - i'm a normal user</p></blockquote></aside>\n\n<p>I'm quoting you on that</p>"
@@ -91,7 +92,7 @@ class ViewController: UIViewController, UITextViewDelegate {
                 
                 let document = try HTMLDocument(string: htmlString)
                 
-                parser = HTMLParser(output: textView, source: document, imageRetriever: KingfisherManager.sharedManager)
+                parser = HTMLParser(output: textView, source: document, imageRetriever: KingfisherManager.sharedManager, css: css)
                     
                 let tuple = try parser.parse()
                 

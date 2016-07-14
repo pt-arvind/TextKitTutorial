@@ -25,11 +25,16 @@ class LiveView : UIView {
 
 struct HTMLStylingAssistant {
     static func style(html: String) -> String {
-        /*
-         blockquote { border-left: 5px solid #e9e9e9; background-color: #f8f8f8; clear: both; }
-        */
-        let styling = "<meta charset=\"UTF-8\"><style> blockquote { border-left: 5px solid #e9e9e9; background-color: #f8f8f8; clear: both; }</style>"
-        return "\(styling)\(html)"
+        
+        let style2 = "blockquote { border-left: 5px solid #e9e9e9; background-color: #f8f8f8; clear: both; }"
+
+        let style = "blockquote { background-color: #f8f8f8; border-left: 5px solid #e9e9e9; margin-left: 0; margin-right: 0; padding: 12px; }"
+        
+        let styling = "<meta charset=\"UTF-8\" /><style> \(style) </style>"
+        let cookedHtml =  "\(styling)\(html)"
+        
+        
+        return cookedHtml
     }
 }
 

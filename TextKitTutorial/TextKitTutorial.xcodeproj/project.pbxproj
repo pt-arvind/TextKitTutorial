@@ -176,12 +176,7 @@
 				4C00548B1CC175C500F2AB59 /* Assets.xcassets */,
 				4C00548D1CC175C500F2AB59 /* LaunchScreen.storyboard */,
 				4C0054901CC175C500F2AB59 /* Info.plist */,
-				4C0054C31CC6828300F2AB59 /* HelperFunctions.swift */,
-				4C0054C51CC6D6CF00F2AB59 /* EnlargedImage.swift */,
 				4C0054C71CC819D100F2AB59 /* TextKitTutorialBridgingHeader.h */,
-				4CA666801CC9578600ECC1AE /* ImageLoader.swift */,
-				4C34EED61CD25EEA003174F6 /* HTMLParser.swift */,
-				4C34EED81CD26C2D003174F6 /* WWXMLElement.swift */,
 			);
 			path = TextKitTutorial;
 			sourceTree = "<group>";
@@ -213,6 +208,11 @@
 				4C0054B41CC533E500F2AB59 /* Handler.swift */,
 				4C0054B51CC533E500F2AB59 /* TextStorage.swift */,
 				4C0054B61CC533E500F2AB59 /* TextView.swift */,
+				4C0054C31CC6828300F2AB59 /* HelperFunctions.swift */,
+				4C0054C51CC6D6CF00F2AB59 /* EnlargedImage.swift */,
+				4CA666801CC9578600ECC1AE /* ImageLoader.swift */,
+				4C34EED61CD25EEA003174F6 /* HTMLParser.swift */,
+				4C34EED81CD26C2D003174F6 /* WWXMLElement.swift */,
 			);
 			name = WWTextView;
 			sourceTree = "<group>";

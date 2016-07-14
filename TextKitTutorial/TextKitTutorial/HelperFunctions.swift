@@ -17,6 +17,12 @@ struct HelperFunctions {
         return fileContent as String
     }
     
+    static func stringFromFile(named fileName: String, withExtension `extension`:String ) -> String? {
+        let url = NSBundle.mainBundle().URLForResource(fileName, withExtension: `extension`)
+        guard let fileContent = try? NSString(contentsOfURL: url!, encoding: NSUTF8StringEncoding) else { return nil }
+        return fileContent as String
+    }
+    
     static func showHTMLString(unformattedString: String) -> NSAttributedString{
         
         return try! NSAttributedString(data: unformattedString.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)

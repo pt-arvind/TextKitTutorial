@@ -28,12 +28,25 @@ protocol ImageRetriever: class {
 extension WWHTMLTextView : HTMLParserOutput {}
 extension KingfisherManager : ImageRetriever {}
 
+struct HTMLStylingAssistant {
+    static func style(html: String, with css: String) -> String {
+        /*
+         blockquote { border-left: 5px solid #e9e9e9; background-color: #f8f8f8; clear: both; }
+         */
+        
+        let styling = "<meta charset=\"UTF-8\"><style> \(css) </style>" //
+        return "\(styling)\(html)"
+    }
+}
+
 struct AttributedStringAssistant {
     // abstract // FIXME: protocol with impl?
     class Element {
         let XMLelement: WWXMLElement
-        init (XMLelement: WWXMLElement) {
+        let css: String
+        init (XMLelement: WWXMLElement, css: String) {
             self.XMLelement = XMLelement
+            self.css = css
         }
         
         func attributedStrings() -> [NSAttributedString] {
@@ -50,9 +63,9 @@ struct AttributedStringAssistant {
         private var images = [ImageTypeStruct]()
         private var strings = [NSAttributedString]()
         
-        init(XMLelement: WWXMLElement, document: HTMLDocument) throws {
+        init(XMLelement: WWXMLElement, css: String, document: HTMLDocument) throws {
             self.document = document
-            super.init(XMLelement: XMLelement)
+            super.init(XMLelement: XMLelement, css: css)
             try buildAttributesAndImages()
         }
         
@@ -78,8 +91,11 @@ struct AttributedStringAssistant {
                 NSCharacterEncodingDocumentAttribute: NSUTF16StringEncoding
             ]
             
-            let encodedData = resultHTMLString.dataUsingEncoding(NSUTF16StringEncoding)
+            let styledHTML = HTMLStylingAssistant.style(resultHTMLString, with: css)
+            
+            let encodedData = styledHTML.dataUsingEncoding(NSUTF16StringEncoding)
             let attributedString = try NSMutableAttributedString(data: encodedData!, options: attributedOptions, documentAttributes: nil)
+            
             strings = [attributedString]
         }
         
@@ -107,9 +123,9 @@ struct AttributedStringAssistant {
     class HREF : Link {
         var href:String
         
-        init(XMLelement: WWXMLElement, href: String) {
+        init(XMLelement: WWXMLElement, css: String, href: String) {
             self.href = href
-            super.init(XMLelement: XMLelement)
+            super.init(XMLelement: XMLelement, css: css)
         }
         
         override func attributedStrings() -> [NSAttributedString] {
@@ -169,20 +185,20 @@ struct AttributedStringAssistant {
     }
     
     struct ElementFactory {
-        static func make(tag: String, element: WWXMLElement) throws -> Element {
+        static func make(tag: String, with element: WWXMLElement, and css: String) throws -> Element {
             var result: Element
             switch tag {
             case HTMLParserConstants.HTMLTypes.image:
-                result = Image(XMLelement: element)
+                result = Image(XMLelement: element, css: css)
             case HTMLParserConstants.HTMLTypes.link where element.element.attributes[HTMLParserConstants.ClassTypes.href] != nil:
                 let href = element.element.attributes[HTMLParserConstants.ClassTypes.href]!
-                result = HREF(XMLelement: element, href: href)
+                result = HREF(XMLelement: element, css: css, href: href)
             case HTMLParserConstants.HTMLTypes.link: // all things that aren't HREF's are being considered mentions...
-                result = Mention(XMLelement: element)
+                result = Mention(XMLelement: element, css: css)
             default:
                 guard let HTMLString = element.raw else { throw Exception.InvalidHTML }
                 
-                result = try Raw(XMLelement: element, document: HTMLDocument(string: HTMLString))
+                result = try Raw(XMLelement: element, css: css, document: HTMLDocument(string: HTMLString))
             }
             
             return result
@@ -233,6 +249,7 @@ class HTMLParser {
         for var imageType in images {
             imageType.imageRange = output.insertImage("placeholderImage", image: placeholderImage, size: imageType.size, at: imageType.index)
             
+            // -___-
             imageRetriever.retrieveImageWithURL(NSURL(string: imageType.src)!, optionsInfo: nil, progressBlock: nil, completionHandler: { [weak self] (image, error, cacheType, imageURL) in
                 dispatch_async(dispatch_get_main_queue(), {
                     guard let _self = self, image = image, range = imageType.imageRange else {
@@ -271,7 +288,7 @@ class HTMLParser {
                 continue
             }
             
-            let elementStringRepresentable = try AttributedStringAssistant.ElementFactory.make(tag, element: wwelement)
+            let elementStringRepresentable = try AttributedStringAssistant.ElementFactory.make(tag, with: wwelement, and: css)
             
             for string in elementStringRepresentable.attributedStrings() {
                 attrStr.appendAttributedString(string)
