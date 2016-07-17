@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		15D655C835CAA7EDB1F1416C /* Pods_ForumsWebView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25EAD59851EFA5F7A2C53A21 /* Pods_ForumsWebView.framework */; };
+		B05647A51D384B4F00F0C83C /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05647A41D384B4F00F0C83C /* HelperFunctions.swift */; };
+		B05647A91D38556700F0C83C /* custom.css in Resources */ = {isa = PBXBuildFile; fileRef = B05647A81D38556700F0C83C /* custom.css */; };
 		B06F8C061D381DA7001D75BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06F8C051D381DA7001D75BF /* AppDelegate.swift */; };
 		B06F8C081D381DA7001D75BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06F8C071D381DA7001D75BF /* ViewController.swift */; };
 		B06F8C0D1D381DA7001D75BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B06F8C0C1D381DA7001D75BF /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 		25EAD59851EFA5F7A2C53A21 /* Pods_ForumsWebView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ForumsWebView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		727C7B952EAF85037C71E05A /* Pods-ForumsWebView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForumsWebView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ForumsWebView/Pods-ForumsWebView.debug.xcconfig"; sourceTree = "<group>"; };
 		AACF78E2D386184DD17E2FFF /* Pods-ForumsWebView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForumsWebView.release.xcconfig"; path = "Pods/Target Support Files/Pods-ForumsWebView/Pods-ForumsWebView.release.xcconfig"; sourceTree = "<group>"; };
+		B05647A41D384B4F00F0C83C /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		B05647A81D38556700F0C83C /* custom.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = custom.css; sourceTree = "<group>"; };
 		B06F8C021D381DA7001D75BF /* ForumsWebView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForumsWebView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B06F8C051D381DA7001D75BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B06F8C071D381DA7001D75BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,7 +75,9 @@
 		B06F8C041D381DA7001D75BF /* ForumsWebView */ = {
 			isa = PBXGroup;
 			children = (
+				B05647A81D38556700F0C83C /* custom.css */,
 				B06F8C171D381EEC001D75BF /* SampleHTMLParsingPost.json */,
+				B05647A41D384B4F00F0C83C /* HelperFunctions.swift */,
 				B06F8C051D381DA7001D75BF /* AppDelegate.swift */,
 				B06F8C071D381DA7001D75BF /* ViewController.swift */,
 				B06F8C0C1D381DA7001D75BF /* Assets.xcassets */,
@@ -152,6 +158,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B05647A91D38556700F0C83C /* custom.css in Resources */,
 				B06F8C101D381DA7001D75BF /* LaunchScreen.storyboard in Resources */,
 				B06F8C0D1D381DA7001D75BF /* Assets.xcassets in Resources */,
 				B06F8C181D381EEC001D75BF /* SampleHTMLParsingPost.json in Resources */,
@@ -214,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B06F8C081D381DA7001D75BF /* ViewController.swift in Sources */,
+				B05647A51D384B4F00F0C83C /* HelperFunctions.swift in Sources */,
 				B06F8C061D381DA7001D75BF /* AppDelegate.swift in Sources */,
 				B06F8C1A1D381F00001D75BF /* ForumCell.swift in Sources */,
 			);
@@ -321,10 +329,12 @@
 			baseConfigurationReference = 727C7B952EAF85037C71E05A /* Pods-ForumsWebView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ForumsWebView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weddingwire.ForumsWebView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -333,6 +343,7 @@
 			baseConfigurationReference = AACF78E2D386184DD17E2FFF /* Pods-ForumsWebView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ForumsWebView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weddingwire.ForumsWebView;
